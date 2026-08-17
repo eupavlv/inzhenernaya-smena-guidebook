@@ -26,12 +26,12 @@
   nav a, nav .off{display:block; font-size:13.5px; padding:6px 0; text-decoration:none}
   nav a{color:var(--graphite)}
   nav a:hover{color:var(--blue)}
+  nav a .t{padding-bottom:2px; border-bottom:1px solid transparent}
+  nav a.active .t{border-bottom-color:currentColor}
   nav .off{color:#B6BCC7; cursor:default}
   nav .num{display:inline-block; width:26px; font-size:11.5px; color:var(--gray);
            font-variant-numeric:tabular-nums}
   nav .off .num{color:#C8CDD6}
-  nav .soon{font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#C8CDD6;
-            margin-left:4px}
   main{padding:0 0 140px}
   section{padding:70px 64px 0; max-width:1000px}
   @media (max-width:960px){
@@ -57,26 +57,30 @@
   /* ── темы носителей ───────────────────────────────────────────
      линии рамки — графит или синий; оранжевый живёт только
      на текстах и пилюлях, в макетах МКБ его нет вообще            */
-  .sk{--bg2:#FFFFFF; --tx:var(--graphite); --acc:var(--graphite); --kick:var(--orange);
-      --pill:var(--orange); --pilltx:#FFFFFF; --sb:var(--gray)}
-  .sk.dark{--bg2:var(--graphite); --tx:#FFFFFF; --acc:var(--blue); --kick:rgba(255,255,255,.75);
-           --pill:var(--blue); --sb:rgba(255,255,255,.66)}
+  /* основа общая: белый или графит, линии нейтральные.
+     на направление указывает только акцентный цвет                */
+  .sk{--bg2:#FFFFFF; --tx:var(--graphite); --acc:var(--graphite); --track:var(--blue);
+      --pilltx:#FFFFFF; --sb:var(--gray)}
+  .sk.dark{--bg2:var(--graphite); --tx:#FFFFFF; --acc:rgba(255,255,255,.85);
+           --sb:rgba(255,255,255,.66)}
+  .sk.shkb{--track:var(--orange)}
+  .sk.mkb{--track:var(--blue)}
 
   /* лист: всё внутри в cqw — макет масштабируется от ширины карточки,
      поэтому превью любого размера выглядят одинаково и текст всегда влезает */
   .sheet{position:relative; overflow:hidden; background:var(--bg2); color:var(--tx);
          border:1px solid var(--line); container-type:inline-size}
-  .sheet .fr{position:absolute; inset:3.2cqw; border:2px solid var(--acc); pointer-events:none}
+  .sheet .fr{position:absolute; inset:3.2cqw; border:1px solid var(--acc); pointer-events:none}
   .sheet .in{position:absolute; inset:5.8cqw; border:1px solid var(--acc);
              pointer-events:none}
   .sheet .fl{position:absolute; inset:5.8cqw; padding:4.6cqw 4.6cqw 19cqw; display:flex;
              flex-direction:column}
-  .sheet .kk{font-size:2.6cqw; letter-spacing:.16em; text-transform:uppercase; color:var(--kick);
+  .sheet .kk{font-size:2.6cqw; letter-spacing:.16em; text-transform:uppercase; color:var(--track);
              font-weight:500}
-  .sheet .hh{margin:auto 0 0; font-size:8.2cqw; font-weight:700; letter-spacing:-.03em;
+  .sheet .hh{margin:auto 0 0; font-size:8.2cqw; font-weight:900; letter-spacing:-.04em;
              line-height:.94}
   .sheet .pill{align-self:flex-start; margin-top:4.4cqw; padding:1.1cqw 2.8cqw; border-radius:99px;
-               background:var(--pill); color:var(--pilltx); font-size:2.7cqw; font-weight:600}
+               background:var(--track); color:var(--pilltx); font-size:2.7cqw; font-weight:600}
   .sheet .st{position:absolute; left:5.8cqw; right:5.8cqw; bottom:5.8cqw; display:grid;
              border:1px solid var(--acc); background:var(--bg2)}
   .sheet .st > div{padding:2cqw 2.4cqw; border-left:1px solid var(--acc)}
@@ -84,6 +88,7 @@
   .sheet .st .l{font-size:2.2cqw; letter-spacing:.14em; text-transform:uppercase; color:var(--sb);
                 margin-bottom:.7cqw; font-weight:500}
   .sheet .st .v{font-size:3cqw; font-weight:600}
+  .sheet .st .v.tr{color:var(--track)}
   .sheet .st .tt{font-size:3.4cqw; font-weight:700; letter-spacing:-.02em; line-height:1.1}
   .sheet .st .ss{font-size:2.8cqw; color:var(--sb); margin-top:.8cqw; line-height:1.3}
   .sq{aspect-ratio:1/1} .wide{aspect-ratio:16/9}
@@ -91,18 +96,26 @@
   /* титул */
   .cover{position:relative; aspect-ratio:16/9; overflow:hidden; margin-bottom:22px;
          background:var(--graphite); color:#fff; border:1px solid var(--line)}
-  .cover .fr{position:absolute; inset:14px; border:2px solid var(--blue)}
-  .cover .in{position:absolute; inset:26px; border:1px solid var(--blue); opacity:.45}
+  .cover .photo{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+                object-position:center 58%}
+  /* кадр мастерской светлее прежнего флэтлея — затемняем сильнее и с двух сторон,
+     иначе белый заголовок теряется на окнах и стенах */
+  .cover .shade{position:absolute; inset:0;
+    background:linear-gradient(102deg, rgba(18,24,33,.93) 0%, rgba(18,24,33,.78) 42%,
+               rgba(18,24,33,.5) 100%),
+               linear-gradient(to top, rgba(18,24,33,.72) 0%, rgba(18,24,33,0) 42%)}
+  .cover .fr{position:absolute; inset:14px; border:1px solid rgba(255,255,255,.9)}
+  .cover .in{position:absolute; inset:26px; border:1px solid rgba(255,255,255,.55)}
   .cover .fl{position:absolute; inset:26px; padding:30px 30px 0; display:flex;
              flex-direction:column}
-  .cover .kk{font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--blue);
-             font-weight:500}
-  .cover .t{margin:auto 0 0; font-size:clamp(28px,4.6vw,60px); line-height:.94; font-weight:700;
-            letter-spacing:-.035em}
+  .cover .kk{font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:#fff;
+             font-weight:600; opacity:.85}
+  .cover .t{margin:auto 0 0; font-size:clamp(34px,6.4vw,86px); line-height:.9; font-weight:900;
+            letter-spacing:-.04em}
   .cover .st{position:absolute; left:26px; right:26px; bottom:26px; display:grid;
-             grid-template-columns:1fr 118px 74px; border:1px solid var(--blue);
-             background:var(--graphite)}
-  .cover .st > div{padding:10px 13px; border-left:1px solid var(--blue)}
+             grid-template-columns:1fr 128px 108px; border:1px solid rgba(255,255,255,.9);
+             background:rgba(20,26,36,.62)}
+  .cover .st > div{padding:10px 13px; border-left:1px solid rgba(255,255,255,.55)}
   .cover .st > div:first-child{border-left:0}
   .cover .l{font-size:9.5px; letter-spacing:.14em; text-transform:uppercase;
             color:rgba(255,255,255,.55); font-weight:500; margin-bottom:4px}
@@ -111,14 +124,16 @@
   .cover .ss{font-size:12.5px; color:rgba(255,255,255,.68); margin-top:4px}
 
   /* цвета */
-  .pal{display:grid; grid-template-columns:repeat(auto-fill,minmax(196px,1fr)); gap:12px;
-       margin:20px 0 10px}
-  .pc{border-radius:10px; padding:16px 16px 18px; min-height:184px; display:flex;
+  /* все пять цветов в одну строку — карточки тянутся по высоте, а не переносятся */
+  .pal{display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin:20px 0 10px}
+  @media (max-width:1000px){ .pal{grid-template-columns:repeat(3,1fr)} }
+  @media (max-width:680px){ .pal{grid-template-columns:repeat(2,1fr)} }
+  .pc{border-radius:10px; padding:16px 15px 18px; min-height:250px; display:flex;
       flex-direction:column; border:1px solid rgba(0,0,0,.06)}
-  .pc .nm{font-size:17px; font-weight:700; letter-spacing:-.02em}
-  .pc .codes{font-size:12.5px; line-height:1.6; margin-top:10px; opacity:.92;
+  .pc .nm{font-size:16px; font-weight:700; letter-spacing:-.02em}
+  .pc .codes{font-size:12px; line-height:1.65; margin-top:10px; opacity:.92;
              font-variant-numeric:tabular-nums}
-  .pc .role{font-size:12.5px; line-height:1.4; margin-top:auto; padding-top:14px; opacity:.8}
+  .pc .role{font-size:12px; line-height:1.4; margin-top:auto; padding-top:16px; opacity:.8}
 
   /* шрифты */
   .wrow{display:grid; grid-template-columns:158px 1fr; gap:22px; align-items:baseline;
@@ -131,10 +146,15 @@
         margin:20px 0 6px}
 
   /* иконки */
-  .icons{display:grid; grid-template-columns:repeat(auto-fill,minmax(132px,1fr)); gap:2px;
-         margin:16px 0 30px; border:1px solid var(--line); background:var(--line)}
-  .ic{margin:0; background:#fff; padding:18px 12px 14px; display:flex; flex-direction:column;
-      align-items:center; gap:10px; text-align:center}
+  /* фиксированные 7 колонок: группы выравниваются между собой,
+     в короткой группе просто остаётся пустое место справа */
+  .icons{display:grid; grid-template-columns:repeat(7,1fr); gap:30px 16px; margin:16px 0 34px;
+         justify-items:center}
+  @media (max-width:1100px){ .icons{grid-template-columns:repeat(5,1fr)} }
+  @media (max-width:760px){ .icons{grid-template-columns:repeat(4,1fr)} }
+  @media (max-width:520px){ .icons{grid-template-columns:repeat(3,1fr)} }
+  .ic{margin:0; display:flex; flex-direction:column; align-items:center; gap:10px;
+      text-align:center}
   .ic .glyph{color:var(--graphite)}
   .ic svg{width:34px; height:34px}
   .ic figcaption{font-size:12px; line-height:1.3; color:var(--graphite)}
@@ -156,9 +176,9 @@
   .box{position:relative; overflow:hidden; border:1px solid var(--line); background:var(--bg2);
        color:var(--tx); aspect-ratio:16/9; padding:40px 46px; display:flex;
        flex-direction:column; justify-content:flex-end}
-  .box .k{font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--kick);
+  .box .k{font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--track);
           font-weight:500; margin-bottom:auto}
-  .box .hh{font-size:36px; font-weight:700; letter-spacing:-.03em; line-height:.96; margin:0;
+  .box .hh{font-size:36px; font-weight:900; letter-spacing:-.04em; line-height:.94; margin:0;
            position:relative; display:inline-block}
   .box .cc{font-size:12.5px; color:var(--sb); margin:24px 0 0}
   .dim-v{position:absolute; left:-26px; top:0; bottom:0; border-left:1.2px solid var(--acc)}
@@ -177,24 +197,26 @@
 <nav>
   <div class="brand">Инженерная смена</div>
   <div class="brandsub">Гайдбук · черновик</div>
-  <a href="#o"><span class="num">01</span>О проекте</a>
-  <span class="off"><span class="num">02</span>Логотип<span class="soon">в работе</span></span>
-  <a href="#color"><span class="num">03</span>Цвет</a>
-  <a href="#type"><span class="num">04</span>Шрифты</a>
-  <a href="#comp"><span class="num">05</span>Композиция</a>
-  <a href="#graph"><span class="num">06</span>Фирменная графика</a>
-  <a href="#icons"><span class="num">07</span>Иконки</a>
-  <span class="off"><span class="num">08</span>Key visual и фото<span class="soon">в работе</span></span>
-  <span class="off"><span class="num">09</span>Соцсети<span class="soon">в работе</span></span>
-  <span class="off"><span class="num">10</span>Презентация<span class="soon">в работе</span></span>
-  <span class="off"><span class="num">11</span>Документация<span class="soon">в работе</span></span>
-  <span class="off"><span class="num">12</span>Как пользоваться<span class="soon">в работе</span></span>
+  <a href="#o"><span class="num">01</span><span class="t">О проекте</span></a>
+  <span class="off"><span class="num">02</span><span class="t">Логотип</span></span>
+  <a href="#color"><span class="num">03</span><span class="t">Цвет</span></a>
+  <a href="#type"><span class="num">04</span><span class="t">Шрифты</span></a>
+  <a href="#comp"><span class="num">05</span><span class="t">Композиция</span></a>
+  <a href="#graph"><span class="num">06</span><span class="t">Фирменная графика</span></a>
+  <a href="#icons"><span class="num">07</span><span class="t">Иконки</span></a>
+  <span class="off"><span class="num">08</span><span class="t">Key visual и фото</span></span>
+  <span class="off"><span class="num">09</span><span class="t">Соцсети</span></span>
+  <span class="off"><span class="num">10</span><span class="t">Презентация</span></span>
+  <span class="off"><span class="num">11</span><span class="t">Документация</span></span>
+  <span class="off"><span class="num">12</span><span class="t">Как пользоваться</span></span>
 </nav>
 
 <main>
 
 <section id="o" style="padding-top:38px">
   <div class="cover">
+    <img class="photo" src="img/обложка.png" alt="">
+    <div class="shade"></div>
     <div class="fr"></div><div class="in"></div>
     <div class="fl" style="padding-bottom:104px">
       <div class="kk">Мончегорский политех · ФабЛаб Мончегорск</div>
@@ -203,8 +225,8 @@
     <div class="st">
       <div><div class="tt">Гайдбук фирменного стиля</div>
            <div class="ss">Конструкторское бюро, треки МКБ и ШКБ</div></div>
-      <div><div class="l">Срок жизни</div><div class="v">2026–2028</div></div>
-      <div><div class="l">Лист</div><div class="v">01</div></div>
+      <div><div class="l">Дата</div><div class="v">Август 2026</div></div>
+      <div><div class="l">Версия</div><div class="v">Черновик</div></div>
     </div>
   </div>
 
@@ -212,6 +234,7 @@
   <p class="lead">«Инженерная смена» — конструкторское бюро, которое повторяет работу настоящего
   промышленного КБ в образовательной среде: техническое задание, проектирование, расчёты,
   изготовление, испытания, отчёт заказчику.</p>
+  <h3>Два трека</h3>
   <p>Внутри программы два трека. <b>МКБ</b> — молодёжное конструкторское бюро: студенты
   Мончегорского политеха и молодёжь 16+, характер технологичный и серьёзный, запускается первым.
   <b>ШКБ</b> — школьное конструкторское бюро: 7–11 классы, характер динамичный и яркий.
@@ -229,16 +252,19 @@
 
 <section id="color">
   <h2>Цвет</h2>
-  <p class="lead">Пять цветов. Синий — основной цвет бренда, оранжевый — акцент школьного трека,
-  графит держит текст и линии, два нейтральных работают на подложках.</p>
+  <p class="lead">Пять цветов, и главного среди них нет — у каждого своя функция. Графит и белый
+  держат основу и работают одинаково в обоих треках. Синий и оранжевый в основу не лезут: это
+  акценты направлений. Серый и светлый фон — служебные.</p>
   <div class="pal" id="pal"></div>
 
-  <h3>Как цвет делится между треками</h3>
-  <p><b>МКБ</b> — графит и синий, белый на воздух. Оранжевый в макетах МКБ не появляется.<br>
-  <b>ШКБ</b> — белый как основа, графитовые линии и оранжевый на акцентах: кикер, пилюля,
-  выделение в заголовке.</p>
-  <p>Разница между треками набирается не количеством оттенков, а тем, какой цвет несущий
-  и сколько в макете белого. Палитра одна и та же — это один бренд, а не два.</p>
+  <h3>Как цвет различает треки</h3>
+  <p>Основа у обоих треков общая: белый или графитовый фон, графитовый текст, нейтральные линии
+  рамки — графитовые на светлом, белые на тёмном. Никакой цвет не закреплён за треком как фон.</p>
+  <p>На направление указывает <b>только акцент</b>: синий у молодёжного трека, оранжевый
+  у школьного. Акцент живёт в трёх местах — кикер над заголовком, пилюля и значение трека
+  в штампе, которое работает как цветной тег. Больше нигде цвет направления не появляется.</p>
+  <p>За счёт этого материалы двух треков стоят в одной ленте как одна программа, а не как два
+  разных бренда, но с одного взгляда понятно, чей это пост.</p>
   <div class="demo" id="tracks"></div>
   <div class="rule"></div>
 </section>
@@ -250,7 +276,7 @@
 
   <h3>Geologica — основной</h3>
   <p>Соцсети, обложки, шапки групп, этот гайдбук. Свободная лицензия, кириллица родная,
-  устанавливается один раз из файла. Начертания только эти три:</p>
+  устанавливается один раз из файла. Начертания только эти четыре:</p>
   <div id="weights-geo"></div>
 
   <h3>Arial — запасной-стандартный</h3>
@@ -286,8 +312,9 @@
   который в соцсетях не читается.</p>
 
   <div class="demo" id="demo"></div>
-  <p class="small">Два решения: графитовые линии на белом, где оранжевый держится на кикере
-  и пилюле, и синие линии на графите для МКБ.</p>
+  <p class="small">Одна и та же основа на графите, разные треки: слева школьный с оранжевым
+  акцентом, справа молодёжный с синим. Линии в обоих белые — они нейтральные и цвет направления
+  не несут.</p>
 
   <h3>Примеры визуала</h3>
   <p>Два собранных поста 1080×1080 — на них видно, как рамка, штамп, заголовок и фотография
@@ -297,8 +324,7 @@
     <img src="img/пример-шкб.png" alt="Пост ШКБ: фотография, белая рамка, штамп">
     <img src="img/пример-мкб.png" alt="Пост МКБ: миллиметровка, вырезанная фигура, штамп">
   </div>
-  <p class="small">Заголовки набраны Geologica Black: на постах вес 900, кегль 104 px,
-  трекинг −0.045. Bold 700 в таком размере выглядит неуверенно — это проверено сравнением.</p>
+
   <div class="rule"></div>
 </section>
 
@@ -415,14 +441,31 @@
 <script>
 const el = (h) => { const d=document.createElement('div'); d.innerHTML=h.trim(); return d.firstElementChild; };
 
+/* активный пункт навигации подчёркивается по мере прокрутки */
+(() => {
+  const links = [...document.querySelectorAll('nav a[href^="#"]')];
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const seen = new Set();
+  const mark = () => {
+    let current = null;
+    for (const id of map.keys()) if (seen.has(id)) { current = id; break; }
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+  };
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => e.isIntersecting ? seen.add(e.target.id) : seen.delete(e.target.id));
+    mark();
+  }, {rootMargin: '-15% 0px -75% 0px'});
+  map.forEach((_, id) => { const el = document.getElementById(id); if (el) io.observe(el); });
+})();
+
 /* ── цвета ── */
 const PALETTE = [
-  {nm:'Синий', hex:'#0077C8', on:'#fff', role:'основной цвет бренда, несущий цвет МКБ',
-   codes:['CMYK 100.30.0.0','RGB 0.119.200']},
-  {nm:'Оранжевый', hex:'#EC6136', on:'#fff', role:'акцент ШКБ: кикеры, пилюли, выделения в тексте',
-   codes:['CMYK 0.59.77.7','RGB 236.97.54']},
-  {nm:'Графит', hex:'#1C2430', on:'#fff', role:'текст, линии рамки, тёмные фоны вместо чёрного',
+  {nm:'Графит', hex:'#1C2430', on:'#fff', role:'общая основа обоих треков: текст, линии, тёмный фон',
    codes:['CMYK 42.25.0.81','RGB 28.36.48']},
+  {nm:'Синий', hex:'#0077C8', on:'#fff', role:'акцент молодёжного трека: кикеры, пилюли, тег МКБ',
+   codes:['CMYK 100.30.0.0','RGB 0.119.200']},
+  {nm:'Оранжевый', hex:'#EC6136', on:'#fff', role:'акцент школьного трека: кикеры, пилюли, тег ШКБ',
+   codes:['CMYK 0.59.77.7','RGB 236.97.54']},
   {nm:'Серый', hex:'#626262', on:'#fff', role:'подписи и вспомогательный текст',
    codes:['CMYK 0.0.0.75','RGB 98.98.98']},
   {nm:'Светлый фон', hex:'#F6F8FA', on:'#39414F', role:'подложки, поля, разделители',
@@ -452,24 +495,24 @@ const sheet = (theme, o) => `
   </div>`;
 
 const cell2 = (tt, ss, l, v) => `<div><div class="tt">${tt}</div><div class="ss">${ss}</div></div>
-  <div><div class="l">${l}</div><div class="v">${v}</div></div>`;
+  <div><div class="l">${l}</div><div class="v${l === 'Трек' ? ' tr' : ''}">${v}</div></div>`;
 
 document.getElementById('tracks').append(
-  el(sheet('', {kick:'Школьное КБ', h:'Первый<br>прототип<br>за 8 недель',
+  el(sheet('shkb', {kick:'Школьное КБ', h:'Первый<br>прототип<br>за 8 недель',
     pill:'Записаться',
-    cells:cell2('Проект «Ветрогенератор»','Расчёт, печать, испытания','Лист','02')})),
-  el(sheet('dark', {kick:'Молодёжное КБ', h:'Набор<br>в первый<br>поток',
+    cells:cell2('Проект «Ветрогенератор»','Расчёт, печать, испытания','Трек','ШКБ')})),
+  el(sheet('mkb', {kick:'Молодёжное КБ', h:'Набор<br>в первый<br>поток',
     pill:'До 15 сентября',
     cells:cell2('Обучение с октября','Политех · ФабЛаб','Трек','МКБ')}))
 );
 
 document.getElementById('demo').append(
-  el(sheet('', {kick:'Школьное КБ', h:'Инженерная<br>смена<br>в школе',
+  el(sheet('shkb dark', {kick:'Школьное КБ', h:'Инженерная<br>смена<br>в школе',
     pill:'7–11 классы',
-    cells:cell2('Первый проект за 8 недель','От ТЗ до испытаний','Лист','04')})),
-  el(sheet('dark', {kick:'Молодёжное КБ', h:'Полный<br>проектный<br>цикл',
+    cells:cell2('Первый проект за 8 недель','От ТЗ до испытаний','Трек','ШКБ')})),
+  el(sheet('mkb dark', {kick:'Молодёжное КБ', h:'Полный<br>проектный<br>цикл',
     pill:'Поток 2026',
-    cells:cell2('Испытания прототипа','Отчёт заказчику','Этап','04')}))
+    cells:cell2('Испытания прототипа','Отчёт заказчику','Трек','МКБ')}))
 );
 
 /* ── шрифты ── */
@@ -481,7 +524,10 @@ const rows = (font, list) => list.map(w => `
   </div>`).join('');
 
 document.getElementById('weights-geo').innerHTML = rows("'Geologica',sans-serif", [
-  {w:700, l:'Bold 700', u:'заголовки, обложки, крупные цифры', s:32, t:'Инженерная смена'},
+  {w:900, l:'Black 900', u:'крупные заголовки от 90 px: обложки, посты, титулы', s:38,
+   t:'Инженерная смена'},
+  {w:700, l:'Bold 700', u:'средние заголовки, заголовки разделов, цифры', s:32,
+   t:'Инженерная смена'},
   {w:500, l:'Medium 500', u:'подзаголовки, кикеры, пилюли', s:21,
    t:'Молодёжное и школьное конструкторское бюро'},
   {w:400, l:'Regular 400', u:'наборный текст, описания, подписи', s:15,
@@ -513,8 +559,8 @@ const mmBox = (theme) => `
                   flex-direction:column; justify-content:flex-end; overflow:hidden;
                   border:1px solid var(--line); background-color:var(--bg2); color:var(--tx);
                   background-image:${mmTile('#0077C8')}">
-        <p style="margin:0; font-size:26px; font-weight:700; letter-spacing:-.025em;
-                  line-height:1">Инженерная<br>смена</p>
+        <p style="margin:0; font-size:28px; font-weight:900; letter-spacing:-.035em;
+                  line-height:.96">Инженерная<br>смена</p>
         <p style="margin:7px 0 0; font-size:12.5px; color:var(--sb)">Мончегорский политех ·
         ФабЛаб Мончегорск</p>
       </div>
