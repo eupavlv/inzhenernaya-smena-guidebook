@@ -75,6 +75,7 @@
              pointer-events:none}
   .sheet .fl{position:absolute; inset:5.8cqw; padding:4.6cqw 4.6cqw 19cqw; display:flex;
              flex-direction:column}
+  .sheet .lgm{width:34cqw; height:auto; display:block; margin:0 0 3.6cqw}
   .sheet .kk{font-size:2.6cqw; letter-spacing:.16em; text-transform:uppercase; color:var(--track);
              font-weight:500}
   .sheet .hh{margin:auto 0 0; font-size:8.2cqw; font-weight:900; letter-spacing:-.04em;
@@ -189,6 +190,19 @@
   .dim-h::before,.dim-h::after{content:''; position:absolute; top:-6px; height:12px;
                                border-left:1.2px solid var(--acc)}
   .dim-h::before{left:0} .dim-h::after{right:0}
+
+  /* --- логотип --- */
+  .logos{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px;
+         margin:14px 0 0}
+  .lgb{padding-bottom:24px}
+  .lgb > p{margin:18px 0 0; max-width:70ch}
+  .lg{border:1px solid var(--line); padding:24px 20px; display:flex; align-items:center}
+  .lg.dark{background:var(--graphite); border-color:var(--graphite)}
+  .lg img{width:100%; height:auto; display:block}
+  .sem{margin:12px 0 0; padding:0; list-style:none}
+  .sem li{position:relative; padding-left:16px; margin:0 0 8px; max-width:70ch}
+  .sem li:before{content:""; position:absolute; left:0; top:.62em; width:8px; height:1px;
+                 background:var(--gray)}
 </style>
 </head>
 <body>
@@ -198,9 +212,9 @@
   <div class="brand">Инженерная смена</div>
   <div class="brandsub">Гайдбук · черновик</div>
   <a href="#o"><span class="num">01</span><span class="t">О проекте</span></a>
-  <span class="off"><span class="num">02</span><span class="t">Логотип</span></span>
-  <a href="#color"><span class="num">03</span><span class="t">Цвет</span></a>
-  <a href="#type"><span class="num">04</span><span class="t">Шрифты</span></a>
+  <a href="#color"><span class="num">02</span><span class="t">Цвет</span></a>
+  <a href="#type"><span class="num">03</span><span class="t">Шрифты</span></a>
+  <a href="#logo"><span class="num">04</span><span class="t">Логотип</span></a>
   <a href="#comp"><span class="num">05</span><span class="t">Композиция</span></a>
   <a href="#graph"><span class="num">06</span><span class="t">Фирменная графика</span></a>
   <a href="#icons"><span class="num">07</span><span class="t">Иконки</span></a>
@@ -286,6 +300,82 @@
   <div id="weights-arial"></div>
   <div class="rule"></div>
 </section>
+
+<section id="logo">
+  <h2>Логотип</h2>
+  <p class="lead">Три альтернативных варианта — заказчик выбирает <b>один</b>. Это не система
+  блокировок, вместе они не используются.</p>
+  <p>Общее у всех трёх: логотип собран из элементов чертежа, цветной элемент ровно один,
+  и название набрано прописными — чертёж по ГОСТ набирается капслоком. Дальше показан
+  каждый вариант в шести исполнениях: на светлом фоне и на графите, с цветом каждого трека
+  и в монохроме.</p>
+
+  <div class="lgb">
+    <h3>Вариант 1 — знак с веткой</h3>
+    <div class="logos">
+      <div class="lg"><img src="img/logo/хамелеон--светлый-синий.svg" alt=""></div>
+      <div class="lg"><img src="img/logo/хамелеон--светлый-оранжевый.svg" alt=""></div>
+      <div class="lg"><img src="img/logo/хамелеон--светлый-моно.svg" alt=""></div>
+      <div class="lg dark"><img src="img/logo/хамелеон--тёмный-синий.svg" alt=""></div>
+      <div class="lg dark"><img src="img/logo/хамелеон--тёмный-оранжевый.svg" alt=""></div>
+      <div class="lg dark"><img src="img/logo/хамелеон--тёмный-моно.svg" alt=""></div>
+    </div>
+    <p>Хамелеон, собранный одной линией постоянной толщины, и название. Ветка проходит сквозь весь логотип и выходит за габарит с обеих сторон — это осевая линия чертежа, и она же единственный цветной элемент.</p>
+    <ul class="sem">
+      <li><b>Гребень насечками</b> — деления измерительной шкалы с равным шагом: отсылка к точности и стандарту, а не к зоологии.</li>
+      <li><b>Хвост спиралью</b> — второй опознавательный признак хамелеона после гребня. Без него силуэт читается любым мелким зверем.</li>
+      <li><b>Хамелеон</b> — маскот «Новой инженерии», одного из учредителей. Смена цвета под трек — его собственное свойство, а не приём, наложенный сверху.</li>
+    </ul>
+  </div>
+
+  <div class="lgb">
+    <h3>Вариант 2 — шрифтовой с засечками</h3>
+    <div class="logos">
+      <div class="lg"><img src="img/logo/засечки--светлый-синий.svg" alt=""></div>
+      <div class="lg"><img src="img/logo/засечки--светлый-оранжевый.svg" alt=""></div>
+      <div class="lg"><img src="img/logo/засечки--светлый-моно.svg" alt=""></div>
+      <div class="lg dark"><img src="img/logo/засечки--тёмный-синий.svg" alt=""></div>
+      <div class="lg dark"><img src="img/logo/засечки--тёмный-оранжевый.svg" alt=""></div>
+      <div class="lg dark"><img src="img/logo/засечки--тёмный-моно.svg" alt=""></div>
+    </div>
+    <p>Знака нет вовсе, его роль берёт на себя обвязка. Габаритные засечки обмеряют текстовый блок, как деталь на чертеже: логотип сам становится объектом измерения.</p>
+    <ul class="sem">
+      <li>Самый тихий из трёх и самый устойчивый в мелком размере — в подвале документа, на бланке, в строке партнёров.</li>
+      <li>Единственный, который не опирается на маскот: если хамелеон у учредителей поменяется, логотип это переживёт.</li>
+    </ul>
+  </div>
+
+  <div class="lgb">
+    <h3>Вариант 3 — знак-вид в рамке</h3>
+    <div class="logos">
+      <div class="lg"><img src="img/logo/круг--светлый-синий.svg" alt=""></div>
+      <div class="lg"><img src="img/logo/круг--светлый-оранжевый.svg" alt=""></div>
+      <div class="lg"><img src="img/logo/круг--светлый-моно.svg" alt=""></div>
+      <div class="lg dark"><img src="img/logo/круг--тёмный-синий.svg" alt=""></div>
+      <div class="lg dark"><img src="img/logo/круг--тёмный-оранжевый.svg" alt=""></div>
+      <div class="lg dark"><img src="img/logo/круг--тёмный-моно.svg" alt=""></div>
+    </div>
+    <p>Знак подан как вид детали на чертеже: окружность, штрихпунктирные осевые, указатели и рамка поля. Название рядом.</p>
+    <ul class="sem">
+      <li>Единственный вариант с квадратным знаком — из него напрямую берутся аватарка и фавикон, остальным двум для этого нужна отдельная версия.</li>
+      <li>Хамелеона в знаке нет: считывается инженерия, а не маскот.</li>
+    </ul>
+  </div>
+
+  <h3>Цвет</h3>
+  <p>Цветной элемент в логотипе ровно один, какой бы вариант ни выбрали.
+  <b>Синий — трек МКБ, оранжевый — ШКБ.</b> Больше цвет направления в знаке не появляется нигде.
+  Правило «линии остаются нейтральными» на логотип не распространяется: цветная линия здесь —
+  не оформление, а элемент знака.</p>
+
+  <h3>Монохром</h3>
+  <p>Акцент не выключается, а заменяется оттенком основы: <b>45 % графита на белом</b>
+  (<code>#999CA2</code>) и <b>45 % белого на графите</b> (<code>#82878D</code>). Акцентный элемент
+  остаётся различим рядом с текстом, но краска остаётся одна.</p>
+
+  <div class="rule"></div>
+</section>
+
 
 <section id="comp">
   <h2>Композиция</h2>
@@ -485,7 +575,8 @@ const sheet = (theme, o) => `
       <div class="sheet ${o.ratio || 'sq'}">
         <div class="fr"></div><div class="in"></div>
         <div class="fl">
-          <div class="kk">${o.kick}</div>
+          ${o.logo ? `<img class="lgm" src="img/logo/${o.logo}" alt="">` : ''}
+          ${o.kick ? `<div class="kk">${o.kick}</div>` : ''}
           <p class="hh">${o.h}</p>
           ${o.pill ? `<span class="pill">${o.pill}</span>` : ''}
         </div>
@@ -498,19 +589,19 @@ const cell2 = (tt, ss, l, v) => `<div><div class="tt">${tt}</div><div class="ss"
   <div><div class="l">${l}</div><div class="v${l === 'Трек' ? ' tr' : ''}">${v}</div></div>`;
 
 document.getElementById('tracks').append(
-  el(sheet('shkb', {kick:'Школьное КБ', h:'Первый<br>прототип<br>за 8 недель',
+  el(sheet('shkb', {logo:'хамелеон--светлый-оранжевый.svg', h:'Первый<br>прототип<br>за 8 недель',
     pill:'Записаться',
     cells:cell2('Проект «Ветрогенератор»','Расчёт, печать, испытания','Трек','ШКБ')})),
-  el(sheet('mkb', {kick:'Молодёжное КБ', h:'Набор<br>в первый<br>поток',
+  el(sheet('mkb', {logo:'хамелеон--светлый-синий.svg', h:'Набор<br>в первый<br>поток',
     pill:'До 15 сентября',
     cells:cell2('Обучение с октября','Политех · ФабЛаб','Трек','МКБ')}))
 );
 
 document.getElementById('demo').append(
-  el(sheet('shkb dark', {kick:'Школьное КБ', h:'Инженерная<br>смена<br>в школе',
+  el(sheet('shkb dark', {logo:'засечки--тёмный-оранжевый.svg', h:'Инженерная<br>смена<br>в школе',
     pill:'7–11 классы',
     cells:cell2('Первый проект за 8 недель','От ТЗ до испытаний','Трек','ШКБ')})),
-  el(sheet('mkb dark', {kick:'Молодёжное КБ', h:'Полный<br>проектный<br>цикл',
+  el(sheet('mkb dark', {logo:'засечки--тёмный-синий.svg', h:'Полный<br>проектный<br>цикл',
     pill:'Поток 2026',
     cells:cell2('Испытания прототипа','Отчёт заказчику','Трек','МКБ')}))
 );
